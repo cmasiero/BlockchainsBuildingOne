@@ -1,8 +1,5 @@
-import sys
 import hashlib
 import json
-#import requests
-from textwrap import dedent
 from time import time
 from uuid import uuid4
 from urllib.parse import urlparse
@@ -94,7 +91,6 @@ class Blockchain(object):
             return True
 
         return False
-
 
     def new_block(self, proof, previous_hash=None):
         """
@@ -226,6 +222,7 @@ def mine():
     return jsonify(response), 200\
 
 
+
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
     values = request.get_json()
@@ -250,6 +247,7 @@ def full_chain():
     }
     return jsonify(response), 200
 
+
 @app.route('/nodes/register', methods=['POST'])
 def register_nodes():
     values = request.get_json()
@@ -267,6 +265,7 @@ def register_nodes():
     }
     return jsonify(response), 201
 
+
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus():
     replaced = blockchain.resolve_conflicts()
@@ -283,6 +282,7 @@ def consensus():
         }
 
     return jsonify(response), 200
+
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
